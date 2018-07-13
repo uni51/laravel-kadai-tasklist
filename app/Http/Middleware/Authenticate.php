@@ -27,6 +27,7 @@ class Authenticate
 
     /**
      * Handle an incoming request.
+     * ['middleware' => 'auth'] が設定されたルーティングにアクセスされたときに毎回呼ばれるメソッド。
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -38,7 +39,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                return redirect()->guest(route('login.get'));
             }
         }
 
