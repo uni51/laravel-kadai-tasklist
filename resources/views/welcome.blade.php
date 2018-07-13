@@ -3,7 +3,18 @@
 @section('content')
     @if (Auth::check())
         <div class="row">
-            <aside class="col-md-4">
+            <aside class="col-xs-4">
+                {!! Form::open(['route' => 'tasks.store']) !!}
+                    <div class="form-group">
+                        {!! Form::label('status', 'ステータス:') !!}
+                        {!! Form::text('status', old('status'), ['class' => 'form-control', 'rows' => '5']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('content', 'タスクの内容:') !!}
+                        {!! Form::text('content', old('content'), ['class' => 'form-control', 'rows' => '5']) !!}
+                    </div>
+                    {!! Form::submit('投稿', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::close() !!}
             </aside>
             <div class="col-xs-8">
                 @if (count($tasks) > 0)

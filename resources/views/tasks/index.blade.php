@@ -2,16 +2,17 @@
 
 @section('content')
 
-<h1>タスク一覧</h1>
-
-@if (count($tasks) > 0)
-    <ul>
-        @foreach ($tasks as $task)
-            <li>{!! link_to_route('tasks.show', $task->id, ['id' => $task->id]) !!} : {{ $task->status }} > {{ $task->content }}</li>
-        @endforeach
-    </ul>
-@endif
-
-    {!! link_to_route('tasks.create', '新規タスクの投稿') !!}
+    @if (Auth::check())
+    <h1>タスク一覧</h1>
+        <div class="row">
+            <aside class="col-md-4">
+            </aside>
+            <div class="col-xs-8">
+                @if (count($tasks) > 0)
+                    @include('tasks.tasks', ['tasks' => $tasks])
+                @endif
+            </div>
+        </div>
+    @endif
 
 @endsection
