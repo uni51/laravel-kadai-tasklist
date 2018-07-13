@@ -23,6 +23,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    protected $redirectTo = '/';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -30,6 +32,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        //  Laravel ではミドルウェアは Controller にアクセスする前に事前に確認される条件
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
